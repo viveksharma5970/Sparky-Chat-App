@@ -27,23 +27,11 @@ app.use("/api/auth", authRoutes);
 console.log("Loading message routes...");
 app.use("/api/messages", messageRoutes);
 
-app.get("/api/", (req, res) => {
+
+app.get("/", (req, res) => {
   res.send("Hello from server!");
 });
 
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-if (process.env.NODE_ENV === "production") {
-  // serve frontend
-  app.use(express.static(path.join(__dirname, "../client/dist")));
-
-  // catch-all: send back index.html
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
-  });
-}
 
 server.listen(5001, () => {
   console.log(`Server started at port ${PORT}`);
