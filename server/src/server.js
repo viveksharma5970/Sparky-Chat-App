@@ -30,9 +30,9 @@ app.use("/api/auth", authRoutes);
 console.log("Loading message routes...");
 app.use("/api/messages", messageRoutes);
 
-// app.get("/", (req, res) => {
-//   res.send("Hello!");
-// });
+app.get("/api/", (req, res) => {
+  res.send("Hello from server!");
+});
 
 if (process.env.NODE_ENV === "production") {
   // serve static files from React
