@@ -21,8 +21,12 @@ app.use(
   })
 );
 
+console.log("Loading auth routes...");
 app.use("/api/auth", authRoutes);
+
+console.log("Loading message routes...");
 app.use("/api/messages", messageRoutes);
+
 // app.get("/", (req, res) => {
 //   res.send("Hello!");
 // });
