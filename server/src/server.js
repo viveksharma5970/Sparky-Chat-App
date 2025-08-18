@@ -12,9 +12,6 @@ import cors from "cors";
 dotenv.config();
 const PORT = process.env.PORT || 5001;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -34,13 +31,17 @@ app.get("/api/", (req, res) => {
   res.send("Hello from server!");
 });
 
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 if (process.env.NODE_ENV === "production") {
-  // serve static files from React
+  // serve frontend
   app.use(express.static(path.join(__dirname, "../client/dist")));
 
-  // serve React index.html for any unknown route
+  // catch-all: send back index.html
   app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
   });
 }
 
